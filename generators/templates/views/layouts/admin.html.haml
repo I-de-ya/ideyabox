@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+%html{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en"}
+  %head
+    %title 
+      Хиконикс
+      |
+      = @page_title
+    = stylesheet_link_tag "admin"
+    = javascript_include_tag "admin"
+    
+    = redactor_lang("ru")
+    /= include_imperavi_stylesheet
+    /= include_imperavi_javascript
+    = yield :js
+    = csrf_meta_tag
+  %body
+    = render "admin/shared/launchbar"
+    = render "admin/shared/header"
+    #wrapper
+      #topbar
+        =render "admin/shared/topbar"
+      #main
+        #page-header
+          = yield(:page_header)
+        - if notice
+          .notice= notice
+        - if alert
+          .alert= alert
+        #page{:class => "#{yield(:page_sidebar).empty? ? 'full' : 'sidebar'}"}
+          #page_sidebar
+            = yield(:page_sidebar)
+          #content
+            = yield
+    #previews
+      = yield(:preview)
+    = debug(params) if Rails.env == "development"
+    -#= request.ip
+    -#= request.location.city
+    -#= request.location.country

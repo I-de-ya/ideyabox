@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+%html.login{:xmlns => "http://www.w3.org/1999/xhtml", "xml:lang" => "en"}
+  %head
+    %meta{"http-equiv" => "Content-Type", :content => "text/html;charset=UTF-8"}
+    %title= ("Вход на сайт")+" | Хиконикс"
+    = stylesheet_link_tag 'admin'
+    = javascript_include_tag "admin"
+    = csrf_meta_tag
+  %body
+    %table.login
+      %tr.login
+        %td.login
+          #main
+            #page-header
+              %h2 Административная панель
+            #page
+              #content
+                = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+                  .fields
+                    = f.label :email, "Логин"
+                    %br
+                    = f.text_field :email
+                  .fields
+                    = f.label :password, "Пароль"
+                    %br
+                    = f.password_field :password, :size => 34
+                  .actions
+                    -#
+                      - if devise_mapping.rememberable?
+                        = f.check_box :remember_me
+                        = f.label :remember_me, "Оставаться в системе"
+                    = f.submit "Войти"

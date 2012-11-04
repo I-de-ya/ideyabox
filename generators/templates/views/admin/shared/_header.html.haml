@@ -1,0 +1,11 @@
+#header
+  #header_wrapper
+
+    #center
+      = link_to "Application", root_path, :target => :_blank
+      = '/'
+      = t(@active)
+    #search
+      = form_tag "/", :id => :subscription do
+        = text_field_tag :search, nil, :placeholder => "search"
+        = submit_tag ""

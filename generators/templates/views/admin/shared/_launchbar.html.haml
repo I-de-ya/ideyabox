@@ -1,0 +1,10 @@
+- @active = :section if ["controllers"].include? controller.controller_name
+
+#launchbar
+  %li.arrow= link_to raw("&darr;"), "#"
+  %ul.menus
+    %li{:class => "#{'active' if @active == :section}"}= link_to "Root", admin_root_path
+    
+  %ul.user_panel
+    %li= link_to current_user.email, "#"
+    %li= link_to "Выход", destroy_user_session_path, :method => :delete

@@ -1,0 +1,6 @@
+- c = controller.controller_name
+- a = controller.action_name
+%ul#nav
+  -case @active
+  -when :section
+    %li{:class => "#{'active' if c=='pages' unless a=='menu'}"}= link_to "Root", admin_root_path
