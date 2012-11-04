@@ -1,7 +1,7 @@
 require 'rails/generators'
 module Ideyabox
   module Generators
-    class AdminGenerator < Rails::Generators::Base
+    class AdminGenerator < ::Rails::Generators::Base
       source_root File.expand_path('../templates', __FILE__)
 
       def generate_admin_layout
