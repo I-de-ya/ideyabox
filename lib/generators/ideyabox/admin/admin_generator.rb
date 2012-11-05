@@ -9,7 +9,6 @@ module Ideyabox
         directory "views/admin", "app/views/admin"
         directory "views/layouts", "app/views/layouts"
         copy_file "tasks/seeds.rb", "db/seeds.rb"
-        copy_file "tasks/reset_db.rake", "lib/tasks/reset_db.rake"
       end
 
       def setup_routes
