@@ -20,6 +20,11 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+## TODO
+
+1. Add scaffolds
+2. Use it
+
 ## Contributing
 
 1. Fork it
