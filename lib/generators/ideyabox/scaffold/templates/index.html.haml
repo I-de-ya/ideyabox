@@ -1,0 +1,32 @@
+- content_for(:page_header) do
+  %h1 <%= resource_name %>
+  %p= link_to "Добавить <%= resource_name %>", new_admin_<%= singular_controller_routing_path %>_path
+  
+- unless @<%= plural_resource_name %>.empty?
+  %table.list<%= ".sortable" if column_names.include?("position") %>
+    %thead
+      %tr
+        <%- columns.each do |column| -%>
+        %th <%= column.name %>
+        <%- end -%>
+        %th
+    - @<%= plural_resource_name %>.each do |<%= resource_name %>|
+      <%- if column_names.include?("position") -%>
+      %tr
+      <%- else -%>
+      %tr
+      <%- end -%>
+        <%- columns.each do |column| -%>
+        <%- if column.name == "position" -%>
+        %td.handle= image_tag asset_path("admin/move_handler.png")
+        <%- elsif column.name == "visible" -%>
+        %td.show= link_to "", [:toggleshow, :admin, <%= resource_name %>], :class => <%= resource_name %>.visible ? nil : "not-show"
+        <%- else -%>
+        %td= link_to <%= resource_name %>.<%= column.name %>, [:edit, :admin, <%= resource_name %>]
+        <%- end -%>
+        <%- end -%>
+        %td= link_to "Удалить", [:admin, <%= resource_name %>], :method => :delete, :confirm => "Удалить?", class: :del
+        
+  <%- if column_names.include?("position") -%>
+  = sortable sort_admin_<%= plural_resource_name %>_path
+  <%- end -%>

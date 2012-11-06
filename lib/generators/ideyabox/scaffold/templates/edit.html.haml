@@ -1,0 +1,36 @@
+- content_for :page_header do
+  %h1
+    - if @<%= resource_name %>.new_record?
+      Добавить <%= resource_name %>
+    - else
+      Редактировать <%= resource_name %>
+
+= form_for [:admin, @<%= resource_name %>] do |f|
+  - if @<%= resource_name %>.errors.any?
+    #error_explanation
+      %h2= "Ошибки при сохранении: #{@<%= resource_name %>.errors.count}"
+      %ul
+        - @<%= resource_name %>.errors.full_messages.each do |msg|
+          %li= msg
+  %table
+    <%- columns.each do |column| -%>
+    <%- if column.field_type.to_s == "text_area" -%>
+    %tr
+      %td{colspan: 2}
+        = f.label :<%= column.name %>
+        %br
+        = f.<%= column.field_type -%> :<%= column.name %>
+    <%- elsif column.field_type.to_s == "check_box" -%>
+    %tr
+      %th{colspan: 2}
+        = f.<%= column.field_type -%> :<%= column.name %>
+        = f.label :<%= column.name %>
+    <%- else -%>
+    %tr
+      %th= f.label :<%= column.name %>
+      %td= f.<%= column.field_type -%> :<%= column.name %>    
+    <%- end -%>
+    <%- end -%>
+  .actions
+    = f.submit "Сохранить"
+    = f.submit "Применить"
