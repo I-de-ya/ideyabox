@@ -2,8 +2,8 @@
 require File.expand_path('../lib/ideyabox/version', __FILE__)
 
 Gem::Specification.new do |gem|
-  gem.authors       = ["Max Rydkin"]
-  gem.email         = ["maks.rydkin@gmail.com"]
+  gem.authors       = ["Max Rydkin", "veskakoff"]
+  gem.email         = ["maks.rydkin@gmail.com", "veskakov@gmail.com"]
   gem.description   = %q{Write a gem description}
   gem.summary       = %q{Write a gem summary}
   gem.homepage      = ""
