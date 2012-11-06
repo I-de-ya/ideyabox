@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "ideyabox"
-  gem.require_paths = ["lib"]
+  gem.require_paths = ["lib", "app"]
   gem.version       = Ideyabox::VERSION
 
   gem.add_dependency "russian"
