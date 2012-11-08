@@ -9,5 +9,5 @@
 //= require chosen.jquery.js
 
 $(document).ready(function(){
-
+  $(".chosen_select").chosen();
 });

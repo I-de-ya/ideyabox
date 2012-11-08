@@ -4,7 +4,7 @@ module AdminHelper
     %Q{
       <script type="text/javascript">
         $(document).ready(function() {
-          $('#sort-list').sortable( {
+          $('#sort-list tbody').sortable( {
             dropOnEmpty: false,
             cursor: 'crosshair',
             opacity: 0.75,
@@ -14,7 +14,7 @@ module AdminHelper
             update: function() {
               $.ajax( {
                 type: 'post',
-                data: $('#sort-list').sortable('serialize') + '&authenticity_token=#{u(form_authenticity_token)}',
+                data: $('#sort-list tbody').sortable('serialize') + '&authenticity_token=#{u(form_authenticity_token)}',
                 dataType: 'script',
                 url: '#{url}'
                 })

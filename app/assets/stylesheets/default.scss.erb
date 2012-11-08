@@ -63,8 +63,15 @@ table {
   width:100%;
   border-collapse:collapse;
   margin-bottom:10px;
+  th {
+    font-size:1.2em;
+    background:$deepgreen;
+    color:$border_color;   
+    padding:0.5em 7px;
+  }
   tr {
-    &:first-child {border-top:1px solid $border_color;}
+    //&:first-child {border-top:1px solid $border_color;}
+    border-top:1px solid $border_color;
     border-bottom:1px solid $border_color;
   }
   td {
@@ -75,6 +82,7 @@ table {
   .right {text-align:right;vertical-align:middle;}
   td.icon a {width:15px;}
   td.handle {color:$deepgreen;cursor: move;}
+  td.icon {width:22px;}
 }
 
 
@@ -88,7 +96,6 @@ table.zebra {
     background:#fff;
   } 
 }
-th {text-align:left;}
 li {list-style: none;}
 
 h1,h2,h3,h4,ul {margin:0;padding:0;}

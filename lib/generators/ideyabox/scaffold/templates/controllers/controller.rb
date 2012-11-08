@@ -1,8 +1,31 @@
 #coding: utf-8
 class Admin::<%= plural_resource_name.capitalize -%>Controller < Admin::ApplicationController
-  
+  <%- if column_names.include?("visible") -%>
+    def toggleshow
+      @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.find(params[:id])
+      @<%= plural_resource_name %>.toggle(:visible)
+      @<%= plural_resource_name %>.save
+      redirect_to :back
+    end
+  <%- end -%>
+
+  <%- if column_names.include?("position") -%>
+    def sort
+      params[:<%= resource_name %>].each_with_index do |id, idx|
+        @<%= resource_name %> = <%= resource_name.capitalize -%>.find(id)
+        @<%= resource_name %>.position = idx
+        @<%= resource_name %>.save
+      end
+      render :nothing => true
+    end
+  <%- end -%>
+
   def index
-    @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.all
+    <%- if column_names.include?("position") -%>
+      @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.order('position')
+    <%- else -%>
+      @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.all
+    <%- end -%>
   end
   
   def new
