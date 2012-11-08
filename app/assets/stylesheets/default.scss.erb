@@ -63,12 +63,7 @@ table {
   width:100%;
   border-collapse:collapse;
   margin-bottom:10px;
-  th {
-    font-size:1.2em;
-    background:$deepgreen;
-    color:$border_color;   
-    padding:0.5em 7px;
-  }
+
   tr {
     //&:first-child {border-top:1px solid $border_color;}
     border-top:1px solid $border_color;
@@ -87,6 +82,12 @@ table {
 
 
 table.zebra {
+  th {
+    font-size:1.2em;
+    background:$deepgreen;
+    color:$border_color;   
+    padding:0.5em 7px;
+  }
   border-right:solid 1px $border_color;
   border-left:solid 1px $border_color;
   tr:nth-child(2n+1) {

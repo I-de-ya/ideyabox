@@ -2,9 +2,8 @@
   #header_wrapper
 
     #center
-      = link_to "Application", root_path, :target => :_blank
-      = '/'
-      = t(@active)
+      = link_to image_tag("admin/rdws_cat.png"), admin_root_path, :id => 'logo'
+      = link_to Rails.application.class.parent_name, root_path, :target => :_blank, :id=>'application_link'
     #search
       = form_tag "/", :id => :subscription do
         = text_field_tag :search, nil, :placeholder => "search"

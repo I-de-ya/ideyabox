@@ -1,9 +1,11 @@
 - content_for :page_header do
+  %p= link_to "Назад", admin_<%= controller_routing_path %>_path, :class => "bright_link"
   %h1
     - if @<%= resource_name %>.new_record?
       Добавить <%= resource_name %>
     - else
       Редактировать <%= resource_name %>
+
 
 = form_for [:admin, @<%= resource_name %>] do |f|
   - if @<%= resource_name %>.errors.any?
@@ -14,6 +16,7 @@
           %li= msg
   %table
     <%- columns.each do |column| -%>
+    <%- unless column.name == "position" %>
     <%- if column.field_type.to_s == "text_area" -%>
     %tr
       %td{colspan: 2}
@@ -30,7 +33,7 @@
       %th= f.label :<%= column.name %>
       %td= f.<%= column.field_type -%> :<%= column.name %>    
     <%- end -%>
+    <%- end -%>  
     <%- end -%>
   .actions
     = f.submit "Сохранить"
-    = f.submit "Применить"
