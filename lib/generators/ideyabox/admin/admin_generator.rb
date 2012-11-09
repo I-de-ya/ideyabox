@@ -40,10 +40,10 @@ module Ideyabox
         generate("devise", "User")
         generate("redactor:install")
         # Next 4 lines for test purposes only
-        generate("scaffold", "Ghost name:string desc:body position:integer visible:boolean")
-        generate("scaffold", "Guest name:string desc:body visible:boolean")
-        generate("scaffold", "Host name:string desc:body position:integer")
-        generate("scaffold", "Post name:string desc:body")
+        generate("scaffold", "Ghost name:string desc:body position:integer visible:boolean --skip-stylesheets")
+        generate("scaffold", "Guest name:string desc:body visible:boolean --skip-stylesheets")
+        generate("scaffold", "Host name:string desc:body position:integer --skip-stylesheets")
+        generate("scaffold", "Post name:string desc:body --skip-stylesheets")
         rake("db:migrate")
       end
 
