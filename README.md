@@ -22,7 +22,7 @@ Hey, people!
 It's simple like this:
 
 Generate new rails app    
-    rails new <your_app_name>
+    rails new '<your_app_name>'
 
 Add our gem to your app's Gemfile
     gem "ideyabox"
