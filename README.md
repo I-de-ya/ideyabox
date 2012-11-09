@@ -28,7 +28,7 @@ After installation generate all administrative staff
 
 Generate some model or scaffold for your project
 
-Add route in your *config/routes.rb* in :admin namespace
+Add */admin* route in your *config/routes.rb* in :admin namespace
     
     namespace :admin do 
       root :to => "your_controller#your_action"

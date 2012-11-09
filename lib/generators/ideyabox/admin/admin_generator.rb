@@ -39,6 +39,11 @@ module Ideyabox
         generate("devise:install")
         generate("devise", "User")
         generate("redactor:install")
+        # Next 4 lines for test purposes only
+        generate("scaffold", "Ghost name:string desc:body position:integer visible:boolean")
+        generate("scaffold", "Guest name:string desc:body visible:boolean")
+        generate("scaffold", "Host name:string desc:body position:integer")
+        generate("scaffold", "Post name:string desc:body")
         rake("db:migrate")
       end
 
