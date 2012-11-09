@@ -22,13 +22,13 @@ Hey, people!
 
 It's simple like this:
 
-1. After installation generate all administrative staff
+After installation generate all administrative staff
     
     $ rails g ideyabox:admin
 
-2. Generate some model or scaffold for your project
+Generate some model or scaffold for your project
 
-3. Add route in your 
+Add route in your 
 '<config/routes.rb>' in :admin namespace
     
     namespace :admin do 
