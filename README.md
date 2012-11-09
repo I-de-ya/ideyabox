@@ -22,7 +22,7 @@ Hey, people!
 It's simple like this:
 
 Generate new rails app    
-    rails new '<your_app_name>'
+    rails new your_app_name
 
 Add our gem to your app's Gemfile
     gem "ideyabox"
@@ -34,7 +34,7 @@ Generate some model or scaffold for your project
 
 Add route in your config/routes.rb in :admin namespace
     namespace :admin do 
-      root :to => "<your controller>#<your action>"
+      root :to => "your_controller#your_action"
     end
 
 like this
