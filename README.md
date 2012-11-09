@@ -18,7 +18,29 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Hey, people!
+It's simple like this:
+
+1. Generate new rails app    
+    rails new <your_app_name>
+
+2. Add our gem to your app's Gemfile
+    gem "ideyabox"
+
+3. Generate all administrative staff
+    rails g ideyabox:admin
+
+4. Generate some model or scaffold for your project
+
+5. Add route in your config/routes.rb in :admin namespace
+    namespace :admin do 
+      root :to => "<your controller>#<your action>"
+    end
+
+like this
+    namespace :admin do 
+      root :to => "guests#index"
+    end
 
 ## TODO
 
