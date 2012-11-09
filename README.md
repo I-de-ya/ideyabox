@@ -21,14 +21,8 @@ Or install it yourself as:
 Hey, people!
 It's simple like this:
 
-Generate new rails app    
-    rails new your_app_name
-
-Add our gem to your app's Gemfile
-    gem "ideyabox"
-
-Generate all administrative staff
-    rails g ideyabox:admin
+After installation generate all administrative staff
+    $ rails g ideyabox:admin
 
 Generate some model or scaffold for your project
 
