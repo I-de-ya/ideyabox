@@ -28,7 +28,8 @@ It's simple like this:
 
 2. Generate some model or scaffold for your project
 
-3. Add route in your '<config/routes.rb>' in :admin namespace
+3. Add route in your 
+'<config/routes.rb>' in :admin namespace
     
     namespace :admin do 
       root :to => "your_controller#your_action"
