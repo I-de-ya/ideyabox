@@ -1,6 +1,6 @@
 - content_for(:page_header) do
   %p= link_to "Добавить <%= resource_name %>", new_admin_<%= singular_controller_routing_path %>_path, :class => "bright_link"
-  %h1 <%= resource_name %>
+  %h1 <%= plural_resource_name %>
     
 - unless @<%= plural_resource_name %>.empty?
   %table.zebra<%= "#sort-list" if column_names.include?("position") %>
