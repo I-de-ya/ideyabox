@@ -1,11 +1,12 @@
 #coding: utf-8
 class Admin::<%= plural_resource_name.capitalize -%>Controller < Admin::ApplicationController
+  helper_method :sort_column, :sort_direction
   <%- if column_names.include?("visible") -%>
     def toggleshow
       @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.find(params[:id])
       @<%= plural_resource_name %>.toggle(:visible)
       @<%= plural_resource_name %>.save
-      redirect_to :back
+      render :nothing => true
     end
   <%- end -%>
 
@@ -22,7 +23,7 @@ class Admin::<%= plural_resource_name.capitalize -%>Controller < Admin::Applicat
 
   def index
     <%- if column_names.include?("position") -%>
-      @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.order('position')
+      @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.order(sort_column + " " + sort_direction).page(params[:page]).per(10)
     <%- else -%>
       @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.all
     <%- end -%>
@@ -60,5 +61,14 @@ class Admin::<%= plural_resource_name.capitalize -%>Controller < Admin::Applicat
     @<%= resource_name %>.destroy
     redirect_to admin_<%= plural_resource_name %>_path, :alert => "<%= resource_name %> удален."
   end
+
+  private
+
+  def sort_column
+    <%= resource_name.capitalize -%>.column_names.include?(params[:sort]) ? params[:sort] : <%= column_names.include?("visible") ? "\'position\'" : "created_at" %>
+  end
   
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end  
 end

@@ -1,39 +1,8 @@
 - content_for(:page_header) do
   %p= link_to "Добавить <%= resource_name %>", new_admin_<%= singular_controller_routing_path %>_path, :class => "bright_link"
   %h1 <%= plural_resource_name %>
-    
+= paginate @<%= plural_resource_name %>
 - unless @<%= plural_resource_name %>.empty?
-  %table.zebra<%= "#sort-list" if column_names.include?("position") %>
-    %thead
-      %tr
-        <%- columns.each do |column| -%>
-        %th <%= column.name unless column.name=='position' || column.name=='visible'%>
-        <%- end -%>
-        %th
-    %tbody
-      - @<%= plural_resource_name %>.each do |<%= resource_name %>|
-        <%- if column_names.include?("position") -%>
-        %tr{:id => "<%= resource_name %>_#{<%= resource_name %>.id}"}
-        <%- else -%>
-        %tr
-        <%- end -%>
-          <%- columns.each do |column| -%>
-          <%- if column.name == "position" -%>
-          %td.icon.handle
-            %i{:class => "icon-move icon-large"}
-          <%- elsif column.name == "visible" -%>
-          %td.icon
-            = link_to [:toggleshow, :admin, <%= resource_name %>] do
-              %i{:class => (<%= resource_name %>.visible? ? "icon-eye-open icon-large" : "icon-eye-close icon-large not-work")}
-          <%- else -%>
-          %td= link_to <%= resource_name %>.<%= column.name %>, [:edit, :admin, <%= resource_name %>]
-          <%- end -%>
-          <%- end -%>
-          %td.right
-            = link_to [:admin, <%= resource_name %>], :method => :delete, :confirm => "Точно удалить?", class: :del do
-              %span Удалить
-              %i{:class => "icon-trash icon-large"}
-        
-  <%- if column_names.include?("position") -%>
-  = sortable sort_admin_<%= plural_resource_name %>_path
-  <%- end -%>
+  -#= link_to "Сделать сортировкой по умолчанию", sort_admin_<%= plural_resource_name %>_path, :id=>'sort_button'
+  #index_wr
+    <%= "= render 'index' " %>

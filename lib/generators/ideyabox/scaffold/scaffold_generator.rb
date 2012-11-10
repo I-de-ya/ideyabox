@@ -87,7 +87,9 @@ module Ideyabox
       def generate_views
         views = {
           "index.html.#{ext}"                 => "app/views/admin/#{@controller_file_path}/index.html.#{ext}",
-          "edit.html.#{ext}"                  => "app/views/admin/#{@controller_file_path}/edit.html.#{ext}"
+          "edit.html.#{ext}"                  => "app/views/admin/#{@controller_file_path}/edit.html.#{ext}",
+          "index.js.#{ext}" => "app/views/admin/#{@controller_file_path}/index.js.#{ext}",
+          "_index.html.#{ext}" => "app/views/admin/#{@controller_file_path}/_index.html.#{ext}",
         }
         selected_views = views
         options.engine == generate_erb(selected_views)

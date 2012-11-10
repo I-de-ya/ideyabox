@@ -33,6 +33,9 @@ a.del {
   &:hover {color:#FF0000;}
 }
 .icon-large{font-size:1.5em;}
+#sort_button {
+  display:none;
+}
 .bright_link {
   background:$deepgreen;
   color:#fff;
@@ -87,7 +90,8 @@ table.zebra {
   th {
     font-size:1.2em;
     background:$deepgreen;
-    color:$border_color;   
+    color:$border_color;  
+    a {color:$border_color;&:hover{color:#fff;}} 
     padding:0.5em 7px;
   }
   border-right:solid 1px $border_color;
