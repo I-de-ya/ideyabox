@@ -5,6 +5,7 @@ TODO: Write a gem description
 ## Our statuses
 
 [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/I-de-ya/ideyabox)
+[![Dependency Status](https://gemnasium.com/I-de-ya/ideyabox.png)](https://gemnasium.com/I-de-ya/ideyabox)
 
 ## Installation
 
