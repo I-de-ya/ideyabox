@@ -94,7 +94,6 @@ module Ideyabox
         selected_views = views
         options.engine == generate_erb(selected_views)
       end
-     
 
       def generate_erb(views)
         views.each do |template_name, output_path|
@@ -109,6 +108,15 @@ module Ideyabox
 
       def generate_controller
         template "controllers/controller.rb", "app/controllers/admin/#{plural_resource_name}_controller.rb"
+      end
+
+      def add_resource_route
+        gsub_file 'config/routes.rb', /^ \s*(namespace :admin do)/mi, ''
+=begin        
+        gsub_file 'config/routes.rb', /^ \s*(namespace :admin do)/mi do |match|
+          match << "\n  resources :#{plural_resource_name}\n"
+        end
+=end      
       end
 
     end

@@ -40,11 +40,12 @@ module Ideyabox
         generate("devise", "User")
         generate("redactor:install")
         # Next 4 lines for test purposes only
-        generate("scaffold", "Ghost name:string desc:body position:integer visible:boolean --skip-stylesheets")
-        generate("scaffold", "Guest name:string desc:body visible:boolean --skip-stylesheets")
-        generate("scaffold", "Host name:string desc:body position:integer --skip-stylesheets")
-        generate("scaffold", "Post name:string desc:body --skip-stylesheets")
+        generate("scaffold", "Ghost name:string desc:text position:integer visible:boolean --skip-stylesheets")
+        generate("scaffold", "Guest name:string desc:text visible:boolean --skip-stylesheets")
+        generate("scaffold", "Host name:string desc:text position:integer --skip-stylesheets")
+        generate("scaffold", "Post name:string desc:text --skip-stylesheets")
         rake("db:migrate")
+        rake("db:seed")
       end
 
       def initialize_git_repo
