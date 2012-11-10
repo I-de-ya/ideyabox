@@ -1,8 +1,8 @@
 - content_for(:page_header) do
   %p= link_to "Добавить <%= resource_name %>", new_admin_<%= singular_controller_routing_path %>_path, :class => "bright_link"
   %h1 <%= plural_resource_name %>
-= paginate @<%= plural_resource_name %>
+-#= paginate @<%= plural_resource_name %>
 - unless @<%= plural_resource_name %>.empty?
-  -#= link_to "Сделать сортировкой по умолчанию", sort_admin_<%= plural_resource_name %>_path, :id=>'sort_button'
+  = link_to "Сделать сортировкой по умолчанию", sort_admin_<%= plural_resource_name %>_path, :id=>'sort_button', :confirm => "Сортировка изменит текущий порядок отображение записисей на сайте. Вы точно уверены?"
   #index_wr
     <%= "= render 'index' " %>

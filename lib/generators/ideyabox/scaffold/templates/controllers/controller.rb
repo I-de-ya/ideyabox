@@ -23,7 +23,7 @@ class Admin::<%= plural_resource_name.capitalize -%>Controller < Admin::Applicat
 
   def index
     <%- if column_names.include?("position") -%>
-      @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.order(sort_column + " " + sort_direction).page(params[:page]).per(10)
+      @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.order(sort_column + " " + sort_direction)
     <%- else -%>
       @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.all
     <%- end -%>

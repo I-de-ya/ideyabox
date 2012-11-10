@@ -2,7 +2,6 @@
   $("#index_wr").html("#{ escape_javascript render "index" }");
   $('.asc').append(" &darr;");
   $('.desc').append(" &uarr;");
-  if ($('.asc, .desc').length ===1) {
-    $('#sort_button').show();
-    $('td.handle, th.position').hide();
-  }
+
+  $('#sort_button').show();
+  $('td.handle, th.position').hide();
