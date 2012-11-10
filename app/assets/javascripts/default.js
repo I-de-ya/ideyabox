@@ -23,13 +23,13 @@ $(document).ready(function(){
     
   });
 
-  $('#sort_button').on('click', function () {
+  $('#sort_button').on('click', function (e) {
     $.ajax( {
       type: 'post',
       data: $('#sort-list tbody').sortable('serialize') + '&authenticity_token=#{u(form_authenticity_token)}',
       dataType: 'script',
       url: $(this).attr('href')
     });
-    return false;
+    e.preventDefault();
   });
 });

@@ -3,6 +3,9 @@
   %h1= link_to '<%= plural_resource_name %>', admin_<%= plural_resource_name %>_path
 -#= paginate @<%= plural_resource_name %>
 - unless @<%= plural_resource_name %>.empty?
-  = link_to "Сделать сортировкой по умолчанию", sort_admin_<%= plural_resource_name %>_path, :id=>'sort_button', :confirm => "Сортировка изменит текущий порядок отображение записисей на сайте. Вы точно уверены?"
+  %ul.horizontal_items
+    %li= link_to "Сортировка по позициям", admin_<%= plural_resource_name %>_path, :class => "bright_link"
+    %li= link_to "Сделать сортировкой по умолчанию", sort_admin_<%= plural_resource_name %>_path, :id=>'sort_button', :confirm => "Сортировка изменит текущий порядок отображение записисей на сайте. Вы точно уверены?", :class => "bright_link"
+    
   #index_wr
     <%= "= render 'index' " %>
