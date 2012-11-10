@@ -2,6 +2,10 @@
 
 TODO: Write a gem description
 
+## Our statuses
+
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/I-de-ya/ideyabox)
+
 ## Installation
 
 Add this line to your application's Gemfile:
