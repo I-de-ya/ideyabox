@@ -111,7 +111,9 @@ module Ideyabox
       end
 
       def add_resource_route
-        gsub_file 'config/routes.rb', /^ \s*(namespace :admin do)/mi, ''
+        in_root do
+          gsub_file 'config/routes.rb', /^  namespace :admin do/, ''
+        end
 =begin        
         gsub_file 'config/routes.rb', /^ \s*(namespace :admin do)/mi do |match|
           match << "\n  resources :#{plural_resource_name}\n"
