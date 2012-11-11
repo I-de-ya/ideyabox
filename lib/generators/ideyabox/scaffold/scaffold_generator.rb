@@ -19,6 +19,10 @@ module Ideyabox
         generate_views
       end
 
+      def add_resources_and_root
+        add_resource_route
+      end
+
       protected
 
       def initialize_views_variables
@@ -108,18 +112,24 @@ module Ideyabox
 
       def generate_controller
         template "controllers/controller.rb", "app/controllers/admin/#{plural_resource_name}_controller.rb"
-        inject_into_file "config/routes.rb", "resources :#{plural_resource_name}", :after => "TestIdeyabox::Application.routes.draw do\n"
       end
 
       def add_resource_route
-        in_root do
-          insert_into_file "config/routes.rb", "resources", :after => "devise_for :users\n"
+        resources_string = "\n    resources :#{plural_resource_name} do\n"
+        sort_string = "      post \"sort\", :on => :collection\n"
+        toggleshow_string = "      get \"toggleshow\", :on => :member\n"
+        
+        if column_names.include?("visible") && column_names.include?("position")
+          final_string = "#{resources_string}#{sort_string}#{toggleshow_string}    end\n"
+        elsif column_names.include?("visible")
+          final_string = "#{resources_string}#{toggleshow_string}    end\n"
+        elsif column_names.include?("position")
+          final_string = "#{resources_string}#{sort_string}    end\n"
+        else
+          final_string = "\n    resources :#{plural_resource_name}\n"
         end
-=begin
-        gsub_file 'config/routes.rb', /^ \s*(namespace :admin do)/mi do |match|
-          match << "\n  resources :#{plural_resource_name}\n"
-        end
-=end      
+
+        inject_into_file "config/routes.rb", final_string, :after => "\n  namespace :admin do\n"
       end
 
     end
