@@ -12,7 +12,7 @@ module Ideyabox
       end
 
       def setup_routes
-        route("namespace :admin do \n\n  end")
+        route("namespace :admin do\n\n  end")
       end
 
       def add_gems_for_admin_workflow
