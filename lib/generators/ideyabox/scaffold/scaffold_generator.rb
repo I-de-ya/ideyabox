@@ -108,13 +108,14 @@ module Ideyabox
 
       def generate_controller
         template "controllers/controller.rb", "app/controllers/admin/#{plural_resource_name}_controller.rb"
+        inject_into_file "config/routes.rb", "resources :#{plural_resource_name}", :after => "TestIdeyabox::Application.routes.draw do\n"
       end
 
       def add_resource_route
         in_root do
-          gsub_file 'config/routes.rb', /^  namespace :admin do/, ''
+          insert_into_file "config/routes.rb", "resources", :after => "devise_for :users\n"
         end
-=begin        
+=begin
         gsub_file 'config/routes.rb', /^ \s*(namespace :admin do)/mi do |match|
           match << "\n  resources :#{plural_resource_name}\n"
         end
