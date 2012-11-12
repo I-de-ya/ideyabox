@@ -58,7 +58,7 @@ class Admin::<%= plural_resource_name.capitalize -%>Controller < Admin::Applicat
   private
 
   def sort_column
-    <%= resource_name.capitalize -%>.column_names.include?(params[:sort]) ? params[:sort] : <%= column_names.include?("visible") ? "\'position\'" : "\'created_at\'" %>
+    <%= resource_name.capitalize -%>.column_names.include?(params[:sort]) ? params[:sort] : <%= column_names.include?("position") ? "\'position\'" : "\'created_at\'" %>
   end
   
   def sort_direction
