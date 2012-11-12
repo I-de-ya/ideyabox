@@ -1,32 +1,25 @@
 #coding: utf-8
 class Admin::<%= plural_resource_name.capitalize -%>Controller < Admin::ApplicationController
   helper_method :sort_column, :sort_direction
-  <%- if column_names.include?("visible") -%>
-    def toggleshow
-      @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.find(params[:id])
-      @<%= plural_resource_name %>.toggle(:visible)
-      @<%= plural_resource_name %>.save
-      render :nothing => true
+<%- if column_names.include?("visible") -%>
+  def toggleshow
+    @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.find(params[:id])
+    @<%= plural_resource_name %>.toggle(:visible)
+    @<%= plural_resource_name %>.save
+    render :nothing => true
+  end
+<%- end -%><%- if column_names.include?("position") -%>
+  def sort
+    params[:<%= resource_name %>].each_with_index do |id, idx|
+      @<%= resource_name %> = <%= resource_name.capitalize -%>.find(id)
+      @<%= resource_name %>.position = idx
+      @<%= resource_name %>.save
     end
+    render :nothing => true
+  end
   <%- end -%>
-
-  <%- if column_names.include?("position") -%>
-    def sort
-      params[:<%= resource_name %>].each_with_index do |id, idx|
-        @<%= resource_name %> = <%= resource_name.capitalize -%>.find(id)
-        @<%= resource_name %>.position = idx
-        @<%= resource_name %>.save
-      end
-      render :nothing => true
-    end
-  <%- end -%>
-
   def index
-    <%- if column_names.include?("position") -%>
-      @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.order(sort_column + " " + sort_direction)
-    <%- else -%>
-      @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.all
-    <%- end -%>
+    <%- if column_names.include?("position") -%>    @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.order(sort_column + " " + sort_direction)<%- else -%>    @<%= plural_resource_name %> = <%= resource_name.capitalize -%>.all<%- end -%>
   end
   
   def new
