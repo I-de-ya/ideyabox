@@ -23,6 +23,11 @@ module Ideyabox
         add_resource_route
       end
 
+      def updated_admin_layout
+        add_to_launchbar_items
+        add_to_topbar_items
+      end
+
       protected
 
       def initialize_views_variables
@@ -132,6 +137,21 @@ module Ideyabox
         end
 
         inject_into_file "config/routes.rb", final_string, :after => "\n  namespace :admin do\n"
+      end
+
+      def add_to_launchbar_items
+        final_string = "\'#{plural_resource_name}\',"
+
+        inject_into_file "app/views/admin/shared/_launchbar.html.haml", final_string, :after => "- @active = :section if ["
+      end
+
+      def add_to_topbar_items
+        final_string = "\n    %li{:class => \"\#\{\'active\' if c==\'#{plural_resource_name}\'}\"\}= link_to \'#{plural_resource_name}\', admin_#{plural_resource_name}_path"
+
+        inject_into_file "app/views/admin/shared/_topbar.html.haml", final_string, :after => "-when :section"
+
+
+
       end
 
     end
