@@ -96,8 +96,8 @@ module Ideyabox
           "_index.html.#{ext}"          => "app/views/admin/#{@controller_file_path}/_index.html.#{ext}",
           "_sort_buttons.html.#{ext}"   => "app/views/admin/#{@controller_file_path}/_sort_buttons.html.#{ext}"
         }
+        views.delete("_sort_buttons.html.#{ext}") unless column_names.include?("position")
         selected_views = views
-        selected_views.delete("_sort_buttons.html.#{ext}") unless column_names.include?("sort")
         options.engine == generate_erb(selected_views)
       end
 
