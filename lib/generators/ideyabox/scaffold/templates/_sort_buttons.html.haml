@@ -1,0 +1,4 @@
+- unless @<%= plural_resource_name %>.empty? && <%= !column_names.include?("sort") %>
+  %ul.horizontal_items
+    %li= link_to "Сортировка по позициям", admin_<%= plural_resource_name %>_path, :class => "bright_link"
+    %li= link_to "Сделать сортировкой по умолчанию", sort_admin_<%= plural_resource_name %>_path, :id => 'sort_button', :confirm => "Сортировка изменит текущий порядок отображение записисей на сайте. Вы точно уверены?", :class => "bright_link"
