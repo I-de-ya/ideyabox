@@ -19,6 +19,10 @@ module Ideyabox
         generate_views
       end
 
+      def add_locale_templates
+        add_to_locales
+      end
+
       def add_resources_and_root
         add_resource_route
       end
@@ -149,9 +153,17 @@ module Ideyabox
         final_string = "\n    %li{:class => \"\#\{\'active\' if c==\'#{plural_resource_name}\'}\"\}= link_to \'#{plural_resource_name}\', admin_#{plural_resource_name}_path"
 
         inject_into_file "app/views/admin/shared/_topbar.html.haml", final_string, :after => "-when :section"
+      end
 
+      def add_to_locales
+        locales = [:ru, :en]
+        
+        attributes = column_names.collect {|column| "\t\t\t#{column}: \"#{column}\"\n"}
 
-
+        locales.each do |locale|
+          inject_into_file "config/locales/#{locale}.yml", "\t\t\t#{resource_name}: \"#{model_name}\"", :after => "models:\n"
+          inject_into_file "config/locales/#{locale}.yml", attributes, :after => "attributes:\n"
+        end
       end
 
     end

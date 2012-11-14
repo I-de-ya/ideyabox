@@ -1,0 +1,13 @@
+# Файл локалиации на русский. Добавьте другие файлики для добавки других локалей.
+# Гляньте https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale чтобы найти что-нибудь для себя.
+
+ru:
+  hello: "Здравствуйте!"
+  activerecord:
+    # Перевод названий моделей. Используется в Model.human_name().
+    models:
+      # user: "Пользователь"
+    # Перевод названий атрибутов моделей. Используется в Model.human_attribute_name(attribute).
+    attributes:
+      # user:
+      #   name: "Имя"

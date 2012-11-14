@@ -8,6 +8,7 @@ module Ideyabox
         directory "controllers", "app/controllers"
         directory "views/admin", "app/views/admin"
         directory "views/layouts", "app/views/layouts"
+        directory "locales", "config/locales"
         copy_file "tasks/seeds.rb", "db/seeds.rb"
       end
 

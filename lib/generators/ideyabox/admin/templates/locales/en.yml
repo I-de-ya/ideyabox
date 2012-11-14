@@ -1,0 +1,14 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+  activerecord:
+    # Model names translations. Using in Model.human_name().
+    models:
+      # user: "User"
+    # Model attribute names translations. Using in Model.human_attribute_name(attribute).
+    attributes:
+      # user:
+      #   name: "Name"
+      #   desc: "Description"
