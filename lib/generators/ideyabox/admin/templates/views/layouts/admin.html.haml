@@ -7,8 +7,6 @@
     = javascript_include_tag "admin"
     
     = redactor_lang("ru")
-    /= include_imperavi_stylesheet
-    /= include_imperavi_javascript
     = yield :js
     = csrf_meta_tag
   %body
@@ -32,6 +30,3 @@
     #previews
       = yield(:preview)
     = debug(params) if Rails.env == "development"
-    -#= request.ip
-    -#= request.location.city
-    -#= request.location.country

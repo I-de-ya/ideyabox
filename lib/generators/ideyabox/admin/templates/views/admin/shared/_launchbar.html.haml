@@ -1,4 +1,4 @@
-- @active = :section if [""].include? controller.controller_name
+- @active = :section if %w{}.include? controller.controller_name
 
 #launchbar
   %li.arrow= link_to raw("&darr;"), "#"
@@ -7,4 +7,4 @@
     
   %ul.user_panel
     %li= link_to current_user.email, "#"
-    %li= link_to "Выход", destroy_user_session_path, :method => :delete
+    %li= link_to t('sign_out'), destroy_user_session_path, :method => :delete

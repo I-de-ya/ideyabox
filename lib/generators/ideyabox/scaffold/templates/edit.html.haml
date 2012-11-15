@@ -1,16 +1,15 @@
 - content_for :page_header do
-  %p= link_to "Назад", admin_<%= controller_routing_path %>_path, :class => "bright_link"
+  %p= link_to t('back'), admin_<%= controller_routing_path %>_path, :class => "bright_link"
   %h1
     - if @<%= resource_name %>.new_record?
-      Добавить <%= resource_name %>
+      = "#{t 'add'} #{<%= resource_name.capitalize %>.model_name.human}"
     - else
-      Редактировать <%= resource_name %>
-
+      = "#{t 'edit'} #{<%= resource_name.capitalize %>.model_name.human}"
 
 = form_for [:admin, @<%= resource_name %>] do |f|
   - if @<%= resource_name %>.errors.any?
     #error_explanation
-      %h2= "Ошибки при сохранении: #{@<%= resource_name %>.errors.count}"
+      %h2= "#{t 'save_errors'}: #{@<%= resource_name %>.errors.count}"
       %ul
         - @<%= resource_name %>.errors.full_messages.each do |msg|
           %li= msg
@@ -36,4 +35,4 @@
     <%- end -%>  
     <%- end -%>
   .actions
-    = f.submit "Сохранить"
+    = f.submit t('save')

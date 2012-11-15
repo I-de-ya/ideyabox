@@ -3,6 +3,24 @@
 
 en:
   hello: "Hello world"
+  flash:
+    notice:
+      was_added: "was added"
+      was_updated: "was updated"
+      was_deleted: "was deleted"
+  confirm:
+    delete: "Are you sure?"
+    sort:
+      make_default: "Sorting will change order of records on site. Are you sure?"
+  sort:
+    by_position: "Sort by position"
+    make_default: "Make this sort default"
+  back: "Back"
+  add: "Add"
+  edit: "Edit"
+  save: "Save"
+  save_errors: "Errors"
+  sign_out: "Sign out"
   activerecord:
     # Model names translations. Using in Model.human_name().
     models:

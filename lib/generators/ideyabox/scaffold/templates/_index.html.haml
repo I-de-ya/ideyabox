@@ -30,7 +30,7 @@
         <%- end -%>
         <%- end -%>
         %td.right
-          = link_to [:admin, <%= resource_name %>], :method => :delete, :confirm => "Точно удалить?", class: :del do
+          = link_to [:admin, <%= resource_name %>], :method => :delete, :confirm => "#{t 'confirm.delete'}", class: :del do
             %span Удалить
             %i{:class => "icon-trash icon-large"}
   <%- if column_names.include?("position") -%>

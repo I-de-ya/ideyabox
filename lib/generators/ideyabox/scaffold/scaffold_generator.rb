@@ -144,13 +144,13 @@ module Ideyabox
       end
 
       def add_to_launchbar_items
-        final_string = "\'#{plural_resource_name}\',"
+        final_string = "#{plural_resource_name} "
 
-        inject_into_file "app/views/admin/shared/_launchbar.html.haml", final_string, :after => "- @active = :section if ["
+        inject_into_file "app/views/admin/shared/_launchbar.html.haml", final_string, :after => "- @active = :section if %w{"
       end
 
       def add_to_topbar_items
-        final_string = "\n    %li{:class => \"\#\{\'active\' if c==\'#{plural_resource_name}\'}\"\}= link_to \'#{plural_resource_name}\', admin_#{plural_resource_name}_path"
+        final_string = "\n    %li{:class => \"\#\{\'active\' if c == \'#{plural_resource_name}\'}\"\}= link_to \'#{plural_resource_name}\', admin_#{plural_resource_name}_path"
 
         inject_into_file "app/views/admin/shared/_topbar.html.haml", final_string, :after => "-when :section"
       end
@@ -158,11 +158,13 @@ module Ideyabox
       def add_to_locales
         locales = [:ru, :en]
         
-        attributes = column_names.collect {|column| "\t\t\t#{column}: \"#{column}\"\n"}
+        attributes = column_names.collect {|column| "        #{column}: \"#{column}\"\n"}
+
+        attributes_string = "      #{resource_name}:\n#{attributes.join}"
 
         locales.each do |locale|
-          inject_into_file "config/locales/#{locale}.yml", "\t\t\t#{resource_name}: \"#{model_name}\"", :after => "models:\n"
-          inject_into_file "config/locales/#{locale}.yml", attributes, :after => "attributes:\n"
+          inject_into_file "config/locales/#{locale}.yml", "      #{resource_name}: \"#{resource_name}\"\n", :after => "models:\n"
+          inject_into_file "config/locales/#{locale}.yml", attributes_string, :after => "attributes:\n"
         end
       end
 

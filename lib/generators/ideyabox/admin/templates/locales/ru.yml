@@ -3,6 +3,24 @@
 
 ru:
   hello: "Здравствуйте!"
+  flash:
+    notice:
+      was_added: "добавлен"
+      was_edited: "обновлен"
+      was_deleted: "удален"
+  confirm:
+    delete: "Точно удалить?"
+    sort:
+      make_default: "Сортировка изменит текущий порядок отображения записей на сайте. Вы точно уверены?"
+  sort:
+    by_position: "Сортировка по позициям"
+    make_default: "Сделать сортировкой по умолчанию"
+  back: "Назад"
+  add: "Добавить"
+  edit: "Редактировать"
+  save: "Сохранить"
+  save_errors: "Ошибки при сохранении"
+  sign_out: "Выход"
   activerecord:
     # Перевод названий моделей. Используется в Model.human_name().
     models:

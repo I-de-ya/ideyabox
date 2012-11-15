@@ -29,7 +29,7 @@ It's simple like this:
 
 After installation generate all administrative staff
     
-    $ rails g ideyabox:admin
+    $ rails g ideyabox:admin -f
 
 Generate some model or scaffold for your project
 
