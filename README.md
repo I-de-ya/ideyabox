@@ -47,7 +47,8 @@ like this
 
 ## TODO
 
-1. Add scaffolds
+1. Add search engine
+2. Add scopes to models
 2. Use it
 
 ## Contributing
