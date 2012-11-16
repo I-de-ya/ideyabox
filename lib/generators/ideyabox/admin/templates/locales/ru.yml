@@ -6,7 +6,7 @@ ru:
   flash:
     notice:
       was_added: "добавлен"
-      was_edited: "обновлен"
+      was_updated: "обновлен"
       was_deleted: "удален"
   confirm:
     delete: "Точно удалить?"
