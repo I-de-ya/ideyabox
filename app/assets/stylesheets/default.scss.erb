@@ -16,7 +16,7 @@ $active_color:#C4FFCB;
 $border_color:#d4d4d4;
 $shadows: rgb(150,150,150);
 
-html {overflow-y:scroll;}
+html {overflow-y:scroll;width: 100%;}
 body {width: 100%; 
   background: $bodycolor url(<%= asset_path 'admin/background-image.png' %>);
 
@@ -62,6 +62,7 @@ a.del {
   border-radius: 20px;
   background:$deepgreen;
 }
+form {width:100%;}
 table {
   width:100%;
   border-collapse:collapse;
@@ -69,6 +70,7 @@ table {
 
   tr {
     //&:first-child {border-top:1px solid $border_color;}
+    width:100%;
     border-top:1px solid $border_color;
     border-bottom:1px solid $border_color;
   }

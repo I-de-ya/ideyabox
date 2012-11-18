@@ -17,7 +17,7 @@ $(document).ready(function(){
     return false;
   });
 
-  $('.visibility a').live('click', function(e){
+  $('.visibility a, .toggleshow').live('click', function(e){
     e.preventDefault();
     $(this).find('i').toggleClass('icon-eye-open').toggleClass('icon-eye-close not-work');
     
