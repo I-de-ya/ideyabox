@@ -1,0 +1,10 @@
+%li{:id => "<%= resource_name %>_#{<%= resource_name %>.id}"}
+  = link_to [:edit, :admin, @<%= parent_name %>, <%= resource_name %>] do
+    = image_tag(<%= resource_name %>.image_url(:admin_mini), :class=>"admin_mini")
+  .image_control_panel
+    = link_to [:admin, @<%= parent_name %>, <%= resource_name %>], :remote => true, :method => :delete, :confirm => "#{t 'confirm.delete'}", :class=>'delete_image' do
+      %i{:class => "icon-trash icon-large"}
+    <%= if column_names.include?("visible")
+    = link_to [:toggleshow, :admin, <%= resource_name %>], :remote => true, :class=>'toggleshow' do
+      %i{:class => (<%= resource_name %>.visible? ? "icon-eye-open icon-large" : "icon-eye-close icon-large not-work")}
+    <% end %>

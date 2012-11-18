@@ -1,0 +1,29 @@
+- content_for :page_header do
+  %p= link_to t('back'), [:edit, :admin, @<%=resource_name%>.<%= parent_name %>], :class => "bright_link"
+  %h1
+    - if @<%=resource_name%>.new_record?
+      = "#{t 'add'} #{<%= model_name =>.model_name.human}"
+    - else
+      = "#{t 'edit'} #{<%= model_name =>.model_name.human}"
+
+= form_for [:admin, @<%=resource_name%>.<%= parent_name %>, @<%=resource_name%>] do |f|
+  - if @<%=resource_name%>.errors.any?
+    #error_explanation
+      %h2= "#{t 'save_errors'}: #{@<%=resource_name%>.errors.count}"
+      %ul
+        - @<%=resource_name%>.errors.full_messages.each do |msg|
+          %li= msg
+  %table
+    %tr
+      %th{colspan: 2}
+        - if @<%=resource_name%>.image && @<%=resource_name%>.image_url
+          = image_tag @<%=resource_name%>.image_url
+          %br
+          Выберите другое изображение
+          %br
+    %tr
+      %th= f.label :image
+      %td= f.file_field :image    
+  
+  .actions
+    = f.submit t('save')
