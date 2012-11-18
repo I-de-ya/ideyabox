@@ -31,7 +31,9 @@ module Ideyabox
         gem_group :development do
           gem 'haml-rails'
         end
-
+        gem_group :assets do
+          gem "jquery-fileupload-rails"
+        end
         inside Rails.root do
           run "bundle install"
         end
