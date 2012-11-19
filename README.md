@@ -27,7 +27,7 @@ Hey, people!
 
 It's simple like this:
 
-After installation generate all administrative staff
+After installation generate all administrative staff (flag -f is for forced replacement of some files)
     
     $ rails g ideyabox:admin -f
 
