@@ -2,9 +2,9 @@
   %p= link_to t('back'), [:edit, :admin, @<%=resource_name%>.<%= parent_name %>], :class => "bright_link"
   %h1
     - if @<%=resource_name%>.new_record?
-      = "#{t 'add'} #{<%= model_name =>.model_name.human}"
+      = "#{t 'add'} #{<%= @model_name.demodulize %>.model_name.human}"
     - else
-      = "#{t 'edit'} #{<%= model_name =>.model_name.human}"
+      = "#{t 'edit'} #{<%= @model_name.demodulize %>.model_name.human}"
 
 = form_for [:admin, @<%=resource_name%>.<%= parent_name %>, @<%=resource_name%>] do |f|
   - if @<%=resource_name%>.errors.any?

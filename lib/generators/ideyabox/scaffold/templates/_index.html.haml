@@ -5,7 +5,7 @@
       <%- if column.name=='position' || column.name=='visible'-%>
       %th{:class => <%= (column.name=='position') ? "\'position\'" : "\'visibility\'" %>}
       <%- else -%>
-      <%= "%th= sortable_columns \"#{column.name}\", #{resource_name.capitalize}.human_attribute_name(\"#{column.name}\")" %>
+      <%= "%th= sortable_columns \"#{column.name}\", #{@model_name.demodulize}.human_attribute_name(\"#{column.name}\")" %>
       <%- end -%>
       <%- end -%>
       %th

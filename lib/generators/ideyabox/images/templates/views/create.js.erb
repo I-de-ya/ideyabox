@@ -1,5 +1,0 @@
-<% if @<%=resource_name%>.new_record? %>
-  alert("Failed to uploading")
-<% else %>
-  $('#<%=plural_resource_name%>').append("<%= j render(@<%=resource_name%>) %>")
-<% end %>

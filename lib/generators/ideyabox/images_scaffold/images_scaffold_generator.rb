@@ -3,7 +3,7 @@ require 'rails/generators/generated_attribute'
 
 module Ideyabox
   module Generators
-    class ImagesGenerator < ::Rails::Generators::Base
+    class ImagesScaffoldGenerator < ::Rails::Generators::Base
       source_root File.expand_path('../templates', __FILE__)
       argument :controller_path,    :type => :string
       argument :model_name,         :type => :string, :required => false
@@ -27,9 +27,16 @@ module Ideyabox
         add_resource_route
       end
 
-      def updated_admin_layout
-        add_to_launchbar_items
-        add_to_topbar_items
+      def add_to_parent_view
+        final_string = "\n- content_for(:page_sidebar) do\n  - unless @#{parent_name}.new_record?\n    = render 'admin/#{plural_resource_name}/#{plural_resource_name}'\n"
+
+        inject_into_file "app/views/admin/#{plural_parent_name}/edit.html.haml", final_string, :before => "- content_for :page_header do"
+
+      end
+
+      def updating_models
+        inject_into_file "app/models/#{parent_name}.rb", "\n  has_many :#{plural_resource_name}", :after => "class #{parent_name.capitalize} < ActiveRecord::Base"   
+        inject_into_file "app/models/#{resource_name}.rb", "\n  belongs_to :#{parent_name}\n  mount_uploader :image, #{@model_name.demodulize}Uploader", :after => "class #{@model_name.demodulize} < ActiveRecord::Base"      
       end
 
       protected
@@ -108,9 +115,11 @@ module Ideyabox
       def generate_views
         views = {
           "views/edit.html.#{ext}"            => "app/views/admin/#{@controller_file_path}/edit.html.#{ext}",
-          "views/_image.html.#{ext}"          => "app/views/admin/#{@controller_file_path}/_#{@controller_file_path}.html.#{ext}",
-          "views/create.js.erb"          => "app/views/admin/#{@controller_file_path}/create.js.erb",
-          "views/destroy.js.erb"          => "app/views/admin/#{@controller_file_path}/destroy.js.erb",
+          "views/_image.html.#{ext}"          => "app/views/admin/#{@controller_file_path}/_#{resource_name}.html.#{ext}",
+          "views/_images.html.#{ext}"          => "app/views/admin/#{@controller_file_path}/_#{plural_resource_name}.html.#{ext}",
+          "views/create.js.haml"          => "app/views/admin/#{@controller_file_path}/create.js.haml",
+          "views/destroy.js.haml"          => "app/views/admin/#{@controller_file_path}/destroy.js.haml",
+          "uploader.rb"          => "app/uploaders/#{resource_name}_uploader.rb"
 
         }
         views.delete("_sort_buttons.html.#{ext}") unless column_names.include?("position")
@@ -149,7 +158,7 @@ module Ideyabox
         end
 
         inject_into_file "config/routes.rb", final_string, :after => "\n  namespace :admin do\n"
-        inject_into_file "config/routes.rb", final_string, :after => "\nresources :#{plural_parent_name} do\n"
+        inject_into_file "config/routes.rb", "\n      resources :#{plural_resource_name}\n", :after => "\n    resources :#{plural_parent_name} do"
       end
 
       def add_to_locales
@@ -164,6 +173,9 @@ module Ideyabox
           inject_into_file "config/locales/#{locale}.yml", attributes_string, :after => "attributes:\n"
         end
       end
+
+
+
 
     end
   end

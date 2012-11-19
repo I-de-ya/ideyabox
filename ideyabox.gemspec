@@ -20,6 +20,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency "kaminari"
   gem.add_dependency "haml", ">= 3.1.6"
   gem.add_dependency "devise"
+  gem.add_dependency "jquery-fileupload-rails"
   gem.add_dependency "mini_magick"
   gem.add_dependency "sexy_validators", ">=0.0.5"
   gem.add_development_dependency "haml-rails", ">= 0.3.4"

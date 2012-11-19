@@ -1,6 +1,6 @@
 #coding: utf-8
 class Admin::<%= @model_name.demodulize.pluralize -%>Controller < Admin::ApplicationController
-  helper_method :sort_column, :sort_direction
+
 <%- if column_names.include?("visible") -%>
   def toggleshow
     @<%= plural_resource_name %> = <%= @model_name.demodulize -%>.find(params[:id])
@@ -18,26 +18,14 @@ class Admin::<%= @model_name.demodulize.pluralize -%>Controller < Admin::Applica
     render :nothing => true
   end
   <%- end -%>
-  def index
-    @<%= plural_resource_name %> = <%= @model_name.demodulize -%>.order(sort_column + " " + sort_direction)
-  end
-  
-  def new
-    @<%= resource_name %> = <%= @model_name.demodulize -%>.new
-    render 'edit'
-  end
   
   def edit
     @<%= resource_name %> = <%= @model_name.demodulize -%>.find(params[:id])
   end
   
   def create
-    @<%= resource_name %> = <%= @model_name.demodulize -%>.new(params[:<%= resource_name %>])
-    if @<%= resource_name %>.save
-      redirect_to admin_<%= plural_resource_name %>_path, :notice => "#{<%= @model_name.demodulize %>.model_name.human} #{t 'flash.notice.was_added'}"
-    else
-      render 'edit'
-    end
+    @<%= parent_name %> = <%= parent_name.capitalize -%>.find(params[:<%= parent_name %>_id])
+    @<%= resource_name %> = @<%= parent_name %>.<%= plural_resource_name %>.create(params[:<%= resource_name %>])
   end
 
   def update
@@ -52,16 +40,6 @@ class Admin::<%= @model_name.demodulize.pluralize -%>Controller < Admin::Applica
   def destroy
     @<%= resource_name %> = <%= @model_name.demodulize -%>.find(params[:id])
     @<%= resource_name %>.destroy
-    redirect_to admin_<%= plural_resource_name %>_path, :alert => "#{<%= @model_name.demodulize %>.model_name.human} #{t 'flash.notice.was_deleted'}"
   end
 
-  private
-
-  def sort_column
-    <%= @model_name.demodulize -%>.column_names.include?(params[:sort]) ? params[:sort] : <%= column_names.include?("position") ? "\'position\'" : "\'created_at\'" %>
-  end
-  
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
-  end  
 end

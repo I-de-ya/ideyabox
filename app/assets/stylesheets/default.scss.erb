@@ -418,3 +418,65 @@ html.login {
     input {width:100%}
   }
 }
+@mixin gradient($top, $bottom) {
+  background: $top;
+  background: -moz-linear-gradient(top, $top 0%, $bottom 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom)); 
+  background: -webkit-linear-gradient(top, $top 0%,$bottom 100%); 
+  background: -o-linear-gradient(top, $top 0%,$bottom 100%); 
+  background: -ms-linear-gradient(top, $top 0%,$bottom 100%);
+  background: linear-gradient(to bottom, $top 0%,$bottom 100%); 
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5eb6ff', endColorstr='#006ed6',GradientType=0 );
+}
+.image-list li{
+  display:inline-block;
+  width:47%;
+  margin:3px 0.5%;
+  padding:0;
+  position:relative;
+  border:1px solid grey;
+  .image_control_panel {
+    position:absolute;
+    bottom:0;
+    height:2.5em;
+    background:rgba(255,255,255,0.7);
+    width:100%;
+  }
+  img {width:100%;}
+  a {
+    &.delete_image {
+      color:#000;
+      position:absolute;
+      right:0;
+      bottom:0;
+      &:hover {
+        color:red;
+      }
+    }
+    &.toggleshow {
+      color:#000;
+      position:absolute;
+      left:0;
+      bottom:0;
+      .icon-eye-close {
+        color:#000;
+      }
+      &:hover {
+        color:#53B75F;
+      }      
+    }
+  }
+}
+
+.upload {
+  strong {color:#1B7726;}
+  margin-bottom:0.5em;
+}
+.progress {
+  border:1px solid grey;
+  background:#E6E6E6;
+}
+.bar {
+  @include gradient(#53B75F, #1B7726);
+  height: 10px;
+}
