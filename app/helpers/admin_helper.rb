@@ -37,7 +37,8 @@ module AdminHelper
     url_for :only_path => false, :params => params.merge(overwrite)
   end
 
-    def image_sortable
+  def image_sortable(images)
+    sort_url = "sort_admin_#{images.to_s}_path(:auth_token => current_user.authentication_token)"
     %Q{
       <script type="text/javascript">
         $(document).ready(function() {
@@ -54,7 +55,7 @@ module AdminHelper
                 type: 'post',
                 data: $('.image-list').sortable('serialize') + '&authenticity_token=#{u(form_authenticity_token)}',
                 dataType: 'script',
-                url: '#{sort_admin_post_images_path(:auth_token => current_user.authentication_token)}'})
+                url: '#{eval(sort_url)}'})
               }
             });
           });
