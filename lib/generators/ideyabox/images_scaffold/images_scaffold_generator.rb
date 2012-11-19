@@ -158,7 +158,10 @@ module Ideyabox
         end
 
         inject_into_file "config/routes.rb", final_string, :after => "\n  namespace :admin do\n"
+
         inject_into_file "config/routes.rb", "\n      resources :#{plural_resource_name}\n", :after => "\n    resources :#{plural_parent_name} do"
+
+        inject_into_file "config/routes.rb", " do\n      resources :#{plural_resource_name}\n    end", :after => "\n    resources :#{plural_parent_name}\n"
       end
 
       def add_to_locales
