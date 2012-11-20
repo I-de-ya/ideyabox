@@ -23,7 +23,10 @@
           %br
     %tr
       %th= f.label :image
-      %td= f.file_field :image    
+      %td= f.file_field :image
+    %tr
+      %th= f.label :visible
+      %td= f.check_box :visible 
   
   .actions
     = f.submit t('save')

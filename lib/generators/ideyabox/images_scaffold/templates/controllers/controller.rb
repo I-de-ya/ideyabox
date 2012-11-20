@@ -31,7 +31,7 @@ class Admin::<%= @model_name.demodulize.pluralize -%>Controller < Admin::Applica
   def update
     @<%= resource_name %> = <%= @model_name.demodulize -%>.find(params[:id])
     if @<%= resource_name %>.update_attributes(params[:<%= resource_name %>])
-      redirect_to admin_<%= plural_resource_name %>_path, :notice => "#{<%= @model_name.demodulize %>.model_name.human} #{t 'flash.notice.was_updated'}"
+      redirect_to [:edit, :admin, @<%= resource_name %>.<%= parent_name %>], :notice => "#{<%= @model_name.demodulize %>.model_name.human} #{t 'flash.notice.was_updated'}"
     else
       render 'edit'
     end
