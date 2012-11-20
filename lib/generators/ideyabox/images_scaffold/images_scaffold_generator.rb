@@ -36,7 +36,8 @@ module Ideyabox
 
       def updating_models
         inject_into_file "app/models/#{parent_name}.rb", "\n  has_many :#{plural_resource_name}", :after => "class #{parent_name.capitalize} < ActiveRecord::Base"   
-        inject_into_file "app/models/#{resource_name}.rb", "\n  belongs_to :#{parent_name}\n  mount_uploader :image, #{@model_name.demodulize}Uploader", :after => "class #{@model_name.demodulize} < ActiveRecord::Base"      
+        inject_into_file "app/models/#{resource_name}.rb", "\n  belongs_to :#{parent_name}\n  mount_uploader :image, #{@model_name.demodulize}Uploader", :after => "class #{@model_name.demodulize} < ActiveRecord::Base"
+        inject_into_file "app/models/#{resource_name}.rb", "\n  before_create :add_position\n  def add_position\n    last_#{resource_name} = self.#{parent_name}.#{plural_resource_name}.order(\"position\").last\n    if last_#{resource_name}\n      self.position = last_#{resource_name}.position + 1\n    else\n      self.position = 1\n    end\n  end\n", :after => "\n  mount_uploader :image, #{@model_name.demodulize}Uploader\n"
       end
 
       protected
