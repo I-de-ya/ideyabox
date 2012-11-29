@@ -2,6 +2,8 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require jquery.Jcrop.min.js
+//= require jquery.color.js
 //= require swfobject.js
 //= require jquery.uploadify.min
 //= require jquery-ui.min.js
@@ -10,8 +12,11 @@
 
 //
 $(document).ready(function(){
+
   $(".chosen_select").chosen();
   $('.pagination').hide();
+
+
 
   $('.zebra th a').live('click', function () {
     $.getScript(this.href);
