@@ -27,6 +27,8 @@ Hey, people!
 
 It's simple like this:
 
+### Generating admin layout
+
 After installation generate all administrative staff (flag -f is for forced replacement of some files)
     
     $ rails g ideyabox:admin -f
@@ -44,6 +46,14 @@ like this
     namespace :admin do 
       root :to => "guests#index"
     end
+
+### Generating admin assets
+
+### Admin Scaffold
+
+### Views for associated images
+
+### Crop functionality
 
 ## TODO
 
