@@ -3,7 +3,7 @@ require 'rails/generators/generated_attribute'
 
 module Ideyabox
   module Generators
-    class ScaffoldGenerator < ::Rails::Generators::Base
+    class TreeGenerator < ::Rails::Generators::Base
       source_root File.expand_path('../templates', __FILE__)
       argument :controller_path,    :type => :string
       argument :model_name,         :type => :string, :required => false
@@ -53,10 +53,10 @@ module Ideyabox
       if parent == 'root' || parent == 'null'
         p = ''
       else
-        p = Menu.find(parent).id
+        p = #{@model_name.demodulize}.find(parent).id
       end
       cats.each do |cat|
-        c = Menu.find(cat)
+        c = #{@model_name.demodulize}.find(cat)
         c.parent_id = p
         c.position = i
         c.save
@@ -137,12 +137,9 @@ module Ideyabox
       def generate_views
         views = {
           "index.html.#{ext}"           => "app/views/admin/#{@controller_file_path}/index.html.#{ext}",
-          "edit.html.#{ext}"            => "app/views/admin/#{@controller_file_path}/edit.html.#{ext}",
-          "index.js.#{ext}"             => "app/views/admin/#{@controller_file_path}/index.js.#{ext}",
-          "_index.html.#{ext}"          => "app/views/admin/#{@controller_file_path}/_index.html.#{ext}",
-          "_sort_buttons.html.#{ext}"   => "app/views/admin/#{@controller_file_path}/_sort_buttons.html.#{ext}"
+          "edit.html.#{ext}"            => "app/views/admin/#{@controller_file_path}/edit.html.#{ext}"
         }
-        views.delete("_sort_buttons.html.#{ext}") unless column_names.include?("position")
+
         selected_views = views
         options.engine == generate_erb(selected_views)
       end
