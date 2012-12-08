@@ -24,6 +24,7 @@ module Ideyabox
         gem 'russian'
         gem 'redactor-rails'
         gem 'haml'
+        gem 'ancestry'
         gem 'carrierwave'
         gem 'mini_magick'
         gem 'squeel'
