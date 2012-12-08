@@ -62,4 +62,23 @@ $(document).ready(function(){
         data.context.html('<span>Загрузка файла <strong>\'' + file.name + '\'</strong> завершена.</span>');
       }
   });
+
+  $('#rehook').on('click', function(e){
+    e.preventDefault();
+    $('#unhook').show();
+    $(this).hide();
+    $('.preview_crop').show();
+    $(".cropable").attr('id','cropbox');
+    jcropInit();
+  });
+
+  $('#unhook').on('click', function(e){
+    e.preventDefault();
+    $('#rehook').show();
+    $('.preview_crop').hide();
+    $(this).hide();
+    $(".cropable").removeAttr('id');
+    $('.crop_params input').val('');
+  });
+  
 });

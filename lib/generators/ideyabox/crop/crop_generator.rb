@@ -1,3 +1,4 @@
+#encoding:utf-8
 require 'rails/generators'
 require 'rails/generators/generated_attribute'
 
@@ -13,6 +14,10 @@ module Ideyabox
       def initialize(args, *options)
         super(args, *options)
         initialize_views_variables
+      end
+
+      def copy_views
+        generate_views
       end
 
       def updating_models
@@ -50,22 +55,7 @@ module Ideyabox
       end
 
       def updating_edit_view
-        inject_into_file "app/views/admin/#{plural_resource_name}/edit.html.haml", "(:large), :id=>'cropbox'\n
-          %h3 Preview:
-          .preview_crop
-
-            = image_tag @#{resource_name}.image_url(:large), :id=>'preview'
-
-          - if @#{resource_name}.image && @#{resource_name}.image_url(:crop)
-            %h3 Current version:
-            = image_tag @#{resource_name}.image_url(:crop)
-
-          %br
-          = form_for @#{resource_name} do |f|
-            - ['x','y','w','h'].each do |attribute|
-              = f.hidden_field \"crop_\#{attribute}\"
-          = cropable('#{resource_name}', 0, 0, 300, 200)
-        \n", :after => "          = image_tag @#{resource_name}.image_url"
+        inject_into_file "app/views/admin/#{plural_resource_name}/edit.html.haml", "(:large), :id=>'cropbox'\n          = render 'crop', :#{resource_name} => @#{resource_name}\n", :after => "          = image_tag @#{resource_name}.image_url"
 
       end
 
@@ -144,15 +134,9 @@ module Ideyabox
 
       def generate_views
         views = {
-          "views/edit.html.#{ext}"            => "app/views/admin/#{@controller_file_path}/edit.html.#{ext}",
-          "views/_image.html.#{ext}"          => "app/views/admin/#{@controller_file_path}/_#{resource_name}.html.#{ext}",
-          "views/_images.html.#{ext}"          => "app/views/admin/#{@controller_file_path}/_#{plural_resource_name}.html.#{ext}",
-          "views/create.js.haml"          => "app/views/admin/#{@controller_file_path}/create.js.haml",
-          "views/destroy.js.haml"          => "app/views/admin/#{@controller_file_path}/destroy.js.haml",
-          "uploader.rb"          => "app/uploaders/#{resource_name}_uploader.rb"
-
+          "_crop.html.haml"            => "app/views/admin/#{@controller_file_path}/_crop.html.#{ext}",
         }
-        views.delete("_sort_buttons.html.#{ext}") unless column_names.include?("position")
+
         selected_views = views
         options.engine == generate_erb(selected_views)
       end
@@ -161,16 +145,12 @@ module Ideyabox
         views.each do |template_name, output_path|
           template template_name, output_path
         end
-        generate_controller
       end
 
       def ext
         :haml
       end
 
-      def generate_controller
-        template "controllers/controller.rb", "app/controllers/admin/#{plural_resource_name}_controller.rb"
-      end
 
       def add_resource_route
         resources_string = "\n    resources :#{plural_resource_name} do\n"

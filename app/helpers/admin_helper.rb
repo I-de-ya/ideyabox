@@ -25,42 +25,7 @@ module AdminHelper
     }.gsub(/[\n ]+/, ' ').strip.html_safe
   end
   
-  def cropable(image_name, x,y,w,h)
-    %Q{
-      <script type="text/javascript">
-        $(document).ready(function() {
 
-          $('.preview_crop').width(#{w}).height(#{h});
-
-          $("#cropbox").Jcrop({
-            aspectRatio: #{w}/#{h},
-            onSelect: showCoords,
-            onChange: showCoords
-          });
-
-          function showCoords(c) {
-            $("##{image_name}_crop_x").val(c.x);
-            $("##{image_name}_crop_y").val(c.y);
-            $("##{image_name}_crop_w").val(c.w);
-            $("##{image_name}_crop_h").val(c.h);
-            updatePreview(c);
-          };
-
-          function updatePreview(c) {
-            $(".preview_crop").show();
-            $("#preview").css(
-              {'width': Math.round(#{w}/c.w * $("#cropbox").width()) + 'px',
-              'height': Math.round(#{h}/c.wh * $("#cropbox").height()) + 'px',
-              "margin-left": "-" + Math.round(#{w}/c.w * c.x) + 'px',
-              "margin-top": "-" + Math.round(#{h}/c.h * c.y) + 'px'}
-              );
-          }; 
-
-          $("#cropbox").parents("body").css("min-width","600px");          
-        });
-      </script>
-    }.gsub(/[\n ]+/, ' ').strip.html_safe
-  end
 
   def sortable_columns(column, title = nil)
     title ||= column.titleize

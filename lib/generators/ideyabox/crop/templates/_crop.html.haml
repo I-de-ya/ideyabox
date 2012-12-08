@@ -1,0 +1,17 @@
+.crop_panel
+  = link_to "Выделить фрагмент вручную", "#", :id=>'rehook', :class=>'bright_link'
+  = link_to "Не выделять фрагмент", "#", :id=>'unhook', :class=>'bright_link'
+%h3 Preview:
+.preview_crop
+
+  = image_tag @<%=resource_name%>.image_url(:large), :id=>'preview'
+
+- if @<%=resource_name%>.image && @<%=resource_name%>.image_url(:crop)
+  %h3 Current version:
+  = image_tag @<%= resource_name %>.image_url(:crop)
+
+%br
+= form_for [:admin, <%=resource_name%>] do |f|
+  - ['x','y','w','h'].each do |attribute|
+    = f.hidden_field "crop_#{attribute}"
+= cropable('<%=resource_name%>', 0, 0, 300, 200)

@@ -15,15 +15,15 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib", "app"]
   gem.version       = Ideyabox::VERSION
 
-  gem.add_dependency "russian"
-  gem.add_dependency "redactor-rails"
-  gem.add_dependency "kaminari"
-  gem.add_dependency "haml", ">= 3.1.6"
-  gem.add_dependency "devise"
-  gem.add_dependency "jquery-fileupload-rails"
-  gem.add_dependency "mini_magick"
-  gem.add_dependency "sexy_validators", ">=0.0.5"
-  gem.add_development_dependency "haml-rails", ">= 0.3.4"
-  gem.add_development_dependency "capistrano"
+  # gem.add_dependency "russian"
+  # gem.add_dependency "redactor-rails"
+  # gem.add_dependency "kaminari"
+  # gem.add_dependency "haml", ">= 3.1.6"
+  # gem.add_dependency "devise"
+  # gem.add_dependency "jquery-fileupload-rails"
+  # gem.add_dependency "mini_magick"
+  # gem.add_dependency "sexy_validators", ">=0.0.5"
+  # gem.add_development_dependency "haml-rails", ">= 0.3.4"
+  # gem.add_development_dependency "capistrano"
 
 end
