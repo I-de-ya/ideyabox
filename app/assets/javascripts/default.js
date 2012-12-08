@@ -8,6 +8,7 @@
 //= require jquery.uploadify.min
 //= require jquery-ui.min.js
 //= require chosen.jquery.js
+//= require jquery.mjs.nestedSortable.js
 
 //
 $(document).ready(function(){

@@ -1,0 +1,6 @@
+- content_for(:page_header) do
+  %p= link_to "#{t 'add'}  #{<%= @model_name.demodulize %>.model_name.human}", new_admin_<%= singular_controller_routing_path %>_path, :class => "bright_link"
+  %h1= link_to '<%= plural_resource_name %>', admin_<%= plural_resource_name %>_path
+#index_wr
+  = show_tree(@<%= plural_resource_name %>)
+  = sort_tree(sort_admin_<%= plural_resource_name %>_path, '0')
