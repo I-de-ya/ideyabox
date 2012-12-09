@@ -33,6 +33,18 @@ a.del {
   i {display:inline;}
   &:hover {color:#FF0000;}
 }
+
+@mixin radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;   
+}
+@mixin box-shadow($blur, $color) {
+  -webkit-box-shadow: 0 0 $blur $color;
+  -moz-box-shadow: 0 0 $blur $color;
+  box-shadow: 0 0 $blur $color; 
+}
+
 .icon-large{font-size:1.5em;}
 .horizontal_items {
   display:none;
@@ -514,7 +526,7 @@ ol.sortable {
   width: 100%;
   li {
     width:100%;
-    margin: 12px 0;
+    margin: 5px 0;
     vertical-align: middle;
     padding: 0;
   }
@@ -525,12 +537,18 @@ ol.sortable {
     width:100%;
     vertical-align: middle;
     padding: 10px 0;
-    a {margin-left: 10px;}
+    border:1px solid #000;
+    @include radius(7px);
+    a {position: relative;}
+
+    a.title {margin-left: 45px;}
+    a.del {margin-right: 10px;}
+    .icon-large{font-style: 1em;position: absolute;left: 0;top: 0;}
     .del {float: right;min-width:30px;}
-    &:hover {background-color:#C4FFCB;outline:1px dashed green;}
+    &:hover {background-color:#C4FFCB;border:1px dashed green;}
   }
 }
-.ui-nestedSortable-error {background:#fbe3e4; outline:1px dashed red;}
-.placeholder {background-color: #C4FFCB; outline:1px dashed green;}
+.ui-nestedSortable-error {background:#fbe3e4; border:1px dashed red;}
+.placeholder {background-color: #C4FFCB; border:1px dashed green;}
 .ui-sortable-placeholder {background-color: #C4FFCB !important;height:2.6em;visibility:visible !important;}
 

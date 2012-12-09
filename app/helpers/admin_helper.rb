@@ -146,10 +146,13 @@ module AdminHelper
 
   def children(i)
       html = ""
-      html << "
-      <li id=\"list_#{i.id}\">
-      <div>#{link_to i.title, [:edit, :admin, i]}
-      " 
+      html << "<li id=\"list_#{i.id}\">"
+      html <<"<div>"
+      if i.has_attribute?("visible")
+        html << visible_button(i)
+      end
+      html <<"#{link_to i.title, [:edit, :admin, i], :class=>'title'}" 
+      
       html << delete_button(i)  
       html << "</div>"
       
@@ -163,6 +166,12 @@ module AdminHelper
       end
       html << "</li>"
       return html
+  end
+
+  def visible_button(object)
+    link_to [:toggleshow, :admin, object], :remote => true, :class=>"toggleshow" do
+      raw("<i class=\'#{object.visible? ? 'icon-eye-open icon-large' : 'icon-eye-close icon-large not-work'}\'></i>")
+    end
   end
 
   def delete_button(object)
