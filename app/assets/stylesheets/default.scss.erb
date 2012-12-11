@@ -537,13 +537,33 @@ ol.sortable {
     width:100%;
     vertical-align: middle;
     padding: 5px 0;
+    position: relative;
     border:1px solid #000;
     @include radius(7px);
     a {position: relative;}
 
-    a.title {margin-left: 45px;}
+    a.title {margin-left: 30px;}
+    a.expand {
+      &.plus:after {content:"+";}
+      &.minus {
+        &:after {content:"-";}
+        padding: 0 5px 2px 5px;
+      }
+      margin-left: 10px;
+      font-size: 15px;
+      font-weight: bold;
+      background-color: $deepgreen;
+      display: inline-block;
+      padding: 0 4px 2px 4px;
+      color: #FFF;
+      &:hover{color: #FFF;}
+      &.non-display {display:none;}
+      @include radius(10px);
+    }
+    .toggleshow {position: relative;margin-left: 5px;display: inline-block;width: 12px;height: 12px;}
     a.del {margin-right: 10px;}
     .icon-large{font-size: 1.2em;position: absolute;left: 0;top: 0;}
+
     .del {float: right;min-width:30px;}
     &:hover {background-color:#C4FFCB;border:1px dashed green;}
   }

@@ -148,11 +148,14 @@ module AdminHelper
       html = ""
       html << "<li id=\"list_#{i.id}\">"
       html <<"<div>"
+
+      html << expand_button(i)
       if i.has_attribute?("visible")
         html << visible_button(i)
       end
       html <<"#{link_to i.title, [:edit, :admin, i], :class=>'title'}" 
       
+
       html << delete_button(i)  
       html << "</div>"
       
@@ -166,6 +169,10 @@ module AdminHelper
       end
       html << "</li>"
       return html
+  end
+
+  def expand_button(i)
+    link_to '', '#', :class=>"expand plus #{'non-display' if i.children.empty?}"
   end
 
   def visible_button(object)
@@ -202,6 +209,20 @@ module AdminHelper
             update: function(){
               var serialized = $('ol.sortable').nestedSortable('serialize');
               $.ajax({url: '#{url}', data: serialized});
+
+              $('ol.sortable .expand').each(function(){
+                var $inlist = $(this).parent('div').siblings("ol").first();
+                if ($inlist.find('li').length === 0) {
+                  $(this).addClass('non-display');
+                } else {
+                  if ($inlist.css('display') == 'none') {
+                    $(this).addClass('plus').removeClass('minus');
+                  } else {
+                    $(this).addClass('minus').removeClass('plus');
+                  }
+                  $(this).removeClass('non-display');
+                }
+              });
             }
           });
         });

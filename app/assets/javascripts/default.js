@@ -15,7 +15,7 @@ $(document).ready(function(){
 
   $(".chosen_select").chosen();
   $('.pagination').hide();
-
+  $("ol.sortable ol").hide();
 
 
   $('.zebra th a').live('click', function () {
@@ -28,6 +28,15 @@ $(document).ready(function(){
     $(this).find('i').toggleClass('icon-eye-open').toggleClass('icon-eye-close not-work');
     
   });
+
+  $("ol.sortable").on('click', 'a.expand', function(e){
+    e.preventDefault();
+    var $inList = $(this).parent('div').siblings("ol");
+    $inList.toggle();
+    $(this).toggleClass('minus');
+    $(this).toggleClass('plus');
+  });
+  
 
   $('#sort_button').on('click', function (e) {
     $.ajax( {
