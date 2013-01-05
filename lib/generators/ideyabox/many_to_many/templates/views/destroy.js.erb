@@ -1,0 +1,3 @@
+$('.play_articles_form').html('<%=j render "admin/play_articles/form_in_articles", :plays => @plays, :article => @article %>');
+$("#play_article_"+"<%= @play_article.id %>").remove();
+$(".chosen_select").chosen();

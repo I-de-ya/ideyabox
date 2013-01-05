@@ -3,9 +3,9 @@ class Admin::<%= @model_name.demodulize.pluralize -%>Controller < Admin::Applica
 
 <%- if column_names.include?("visible") -%>
   def toggleshow
-    @<%= plural_resource_name %> = <%= @model_name.demodulize -%>.find(params[:id])
-    @<%= plural_resource_name %>.toggle(:visible)
-    @<%= plural_resource_name %>.save
+    @<%= resource_name %> = <%= @model_name.demodulize -%>.find(params[:id])
+    @<%= resource_name %>.toggle(:visible)
+    @<%= resource_name %>.save
     render :nothing => true
   end
 <%- end -%><%- if column_names.include?("position") -%>

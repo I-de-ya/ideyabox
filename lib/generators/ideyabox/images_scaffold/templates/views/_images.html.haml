@@ -1,4 +1,3 @@
-%h2 Галерея изображений
 .image-list#<%=plural_resource_name%>
   = render @<%=parent_name%>.<%=plural_resource_name%>.order('position')
   = image_sortable("<%=plural_resource_name%>")

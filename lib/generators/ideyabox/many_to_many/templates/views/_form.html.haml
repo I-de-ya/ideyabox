@@ -1,0 +1,9 @@
+= form_for [:admin, PlayArticle.new], :remote => true do |f|
+  %table
+    %tr
+      %td= f.select :play_id,  plays, {:include_blank => true, :prompt => "Добавьте спектакль" }, :class => "chosen_select"
+      %td
+
+  = f.hidden_field :article_id, :value => article.id
+
+  = f.submit "Добавить", :class =>'black_button'

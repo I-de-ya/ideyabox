@@ -28,7 +28,7 @@ module Ideyabox
       end
 
       def add_to_parent_view
-        final_string = "\n- content_for(:page_sidebar) do\n  - unless @#{parent_name}.new_record?\n    = render 'admin/#{plural_resource_name}/#{plural_resource_name}'\n"
+        final_string = "\n- content_for(:page_sidebar) do\n  %h2 Галерея изображений\n\n  - unless @#{parent_name}.new_record?\n    .bordered_box\n      = render 'admin/#{plural_resource_name}/#{plural_resource_name}'\n"
 
         inject_into_file "app/views/admin/#{plural_parent_name}/edit.html.haml", final_string, :before => "- content_for :page_header do"
 

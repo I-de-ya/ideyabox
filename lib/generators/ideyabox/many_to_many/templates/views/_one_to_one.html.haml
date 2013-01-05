@@ -1,0 +1,7 @@
+%tr{:id=> "play_article_#{play_article.id}"}
+  %td= link_to play_article.play.title, [:edit,:admin, play_article.play]
+  %td
+  %td.right
+    = link_to [:admin, play_article], :method => :delete, :confirm => "Точно удалить?", :class => :del, :remote => true do
+      %span Удалить
+      %i{:class => "icon-trash icon-large"} 
