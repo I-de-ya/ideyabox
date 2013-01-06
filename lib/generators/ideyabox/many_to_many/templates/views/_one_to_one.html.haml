@@ -1,7 +1,16 @@
-%tr{:id=> "play_article_#{play_article.id}"}
-  %td= link_to play_article.play.title, [:edit,:admin, play_article.play]
+%tr{:id=> "<%=linking_resource_name%>_#{<%=linking_resource_name%>.id}"}
+  <%- if linking_columns.include?("position") -%>
+  %td.icon.handle
+    %i{:class => "icon-move icon-large"}
+  <% end %>
+  <%- if linking_columns.include?("visible") -%>
+  %td.icon.visibility
+    = link_to [:toggleshow, :admin, <%=linking_resource_name%>], :remote => true do
+      %i{:class => (<%=linking_resource_name%>.visible? ? "icon-eye-open icon-large" : "icon-eye-close icon-large not-work")}    
+  <% end %>
+  %td= link_to <%=linking_resource_name%>.<%=child_name%>.<%=get_title%>, [:edit,:admin, <%=linking_resource_name%>.<%=child_name%>]
   %td
   %td.right
-    = link_to [:admin, play_article], :method => :delete, :confirm => "Точно удалить?", :class => :del, :remote => true do
+    = link_to [:admin, <%=linking_resource_name%>], :method => :delete, :confirm => "Точно удалить?", :class => :del, :remote => true do
       %span Удалить
       %i{:class => "icon-trash icon-large"} 

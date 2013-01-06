@@ -1,0 +1,8 @@
+.<%=plural_linking_resource_name%>_form
+  = render 'admin/<%=plural_linking_resource_name%>/form', :<%=plural_child_name%> => @<%=plural_child_name%>, :<%=resource_name%> => @<%=resource_name%>
+%strong Список <%=plural_child_name%>
+%table.plays{:id => "sort-list-<%=plural_linking_resource_name%>"}
+  = render @<%=resource_name%>.<%=plural_linking_resource_name%>.order(<%= linking_columns.include?("position") ? '\'position\'' : '\'created_at\'' %>)
+  <%- if linking_columns.include?("position") %>
+  = multiple_sortable('sort-list-<%=plural_linking_resource_name%>', sort_admin_<%=plural_linking_resource_name%>_path)
+  <%end%>

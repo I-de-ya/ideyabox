@@ -1,17 +1,16 @@
 #coding: utf-8
 class Admin::<%= linking_model_name.pluralize -%>Controller < Admin::ApplicationController
-
-<%- if column_names.include?("visible") -%>
+<%- if linking_columns.include?("visible") -%>
   def toggleshow
-    @<%= linking_resource_name %> = <%= @linking_linking_model_name -%>.find(params[:id])
+    @<%= linking_resource_name %> = <%= linking_model_name -%>.find(params[:id])
     @<%= linking_resource_name %>.toggle(:visible)
     @<%= linking_resource_name %>.save
     render :nothing => true
   end
-<%- end -%><%- if column_names.include?("position") -%>
+<%- end -%><%- if linking_columns.include?("position") -%>
   def sort
     params[:<%= linking_resource_name %>].each_with_index do |id, idx|
-      @<%= linking_resource_name %> = <%= linking_linking_model_name -%>.find(id)
+      @<%= linking_resource_name %> = <%= linking_model_name -%>.find(id)
       @<%= linking_resource_name %>.position = idx
       @<%= linking_resource_name %>.save
     end
@@ -25,6 +24,12 @@ class Admin::<%= linking_model_name.pluralize -%>Controller < Admin::Application
   
   def create
     @<%= linking_resource_name %> = <%= linking_model_name %>.create(params[:<%= linking_resource_name %>])
+
+    @<%=resource_name%> = @<%= linking_resource_name %>.<%=resource_name%>
+    @<%=plural_child_name%> = <%=child_model%>.has_not_this_<%=resource_name%>(@<%=resource_name%>.id)
+
+    #@<%=child_name%> = @<%= linking_resource_name %>.<%=child_name%>
+    #@<%=plural_resource_name%> = <%=model_name%>.has_not_this_<%=child_name%>(@<%=child_name%>.id)
   end
 
   def update
@@ -39,6 +44,11 @@ class Admin::<%= linking_model_name.pluralize -%>Controller < Admin::Application
   def destroy
     @<%= linking_resource_name %> = <%= linking_model_name -%>.find(params[:id])
     @<%= linking_resource_name %>.destroy
-  end
 
+    @<%=resource_name%> = @<%= linking_resource_name %>.<%=resource_name%>
+    @<%=plural_child_name%> = <%=child_model%>.has_not_this_<%=resource_name%>(@<%=resource_name%>.id)
+
+    #@<%=child_name%> = @<%= linking_resource_name %>.<%=child_name%>
+    #@<%=plural_resource_name%> = <%=model_name%>.has_not_this_<%=child_name%>(@<%=child_name%>.id)    
+  end
 end

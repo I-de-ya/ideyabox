@@ -1,5 +1,33 @@
 # encoding: utf-8
 module AdminHelper
+
+  def multiple_sortable(table_id, url)
+    %Q{
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $("##{table_id} tbody").sortable( {
+            placeholder: 'ui-sortable-placeholder',
+            forcePlaceholderSize: true,
+            dropOnEmpty: false,
+            cursor: 'crosshair',
+            opacity: 0.75,
+            items: 'tr',
+            handle: '.handle',
+            scroll: true,
+            update: function() {
+              $.ajax( {
+                type: 'post',
+                data: $("##{table_id} tbody").sortable('serialize') + '&authenticity_token=#{u(form_authenticity_token)}',
+                dataType: 'script',
+                url: '#{url}'
+                })
+              }
+            });
+          });
+      </script>
+    }.gsub(/[\n ]+/, ' ').strip.html_safe
+  end  
+  
   def sortable(url)
     %Q{
       <script type="text/javascript">
