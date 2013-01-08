@@ -1,9 +1,10 @@
-= form_for [:admin, <%=linking_model_name%>.new], :remote => true do |f|
-  %table
-    %tr
-      %td= f.select :<%=child_name%>_id,  <%=plural_child_name%>, {:include_blank => true, :prompt => "add <%=child_name%>" }, :class => "chosen_select"
-      %td
+- unless <%=plural_child_name%>.empty?
+  = form_for [:admin, <%=linking_model_name%>.new], :remote => true do |f|
+    %table
+      %tr
+        %td= f.select :<%=child_name%>_id,  <%=plural_child_name%>, {:include_blank => true, :prompt => "add <%=child_name%>" }, :class => "chosen_select"
+        %td
 
-  = f.hidden_field :<%=resource_name%>_id, :value => <%=resource_name%>.id
+    = f.hidden_field :<%=resource_name%>_id, :value => <%=resource_name%>.id
 
-  = f.submit "Добавить", :class =>'black_button'
+    = f.submit "Добавить", :class =>'black_button'
