@@ -7,6 +7,7 @@ module Ideyabox
       source_root File.expand_path('../templates', __FILE__)
       argument :controller_path,    :type => :string
       argument :child_controller_path,    :type => :string
+      argument :join_controller_path, :type => :string, :default => nil
       argument :model_name,         :type => :string, :required => false
       argument :layout,             :type => :string, :default => "application",
                                     :banner => "Specify application layout"
@@ -108,7 +109,7 @@ module Ideyabox
       end
 
       def plural_linking_resource_name
-        linking_resource_name.pluralize
+        join_controller_path || linking_resource_name.pluralize
       end
 
 
