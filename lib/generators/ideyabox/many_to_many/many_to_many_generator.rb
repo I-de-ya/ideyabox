@@ -96,7 +96,9 @@ module Ideyabox
 
       #linking model
       def linking_model_name
-        if ActiveRecord::Base.connection.table_exists? "#{child_name}_#{plural_resource_name}"
+        if join_controller_path
+          join_controller_path.singelarize.camelize
+        elsif ActiveRecord::Base.connection.table_exists? "#{child_name}_#{plural_resource_name}"
           "#{child_name}_#{plural_resource_name}".singularize.camelize
         elsif
           ActiveRecord::Base.connection.table_exists? "#{resource_name}_#{plural_child_name}"
@@ -105,11 +107,11 @@ module Ideyabox
       end
 
       def linking_resource_name
-        linking_model_name.try(:underscore)
+        linking_model_name.underscore
       end
 
       def plural_linking_resource_name
-        join_controller_path || linking_resource_name.pluralize
+        linking_resource_name.pluralize
       end
 
 
