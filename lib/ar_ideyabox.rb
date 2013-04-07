@@ -1,10 +1,21 @@
-
 module ArIdeyabox
   # In model just add this line
   # has_not_this :person, through: :professions_people, order: :title, by: :title, group_by: {play: :title}
   # :order and :by - optionally
   # :group_by is for group selectors, if you want grouping roles by play titles, just add group_by: {play: :title}
   
+  def visible
+    where(visible: true)
+  end
+
+  def by_position
+    order(:position)
+  end
+
+  def visible_by_position
+    visible.by_position
+  end
+
   def first_el_tryer(object, by)
     if by.class == Hash
       object.try(by.keys[0]).try(by.values[0])
