@@ -1,3 +1,4 @@
+
 module ArIdeyabox
   # In model just add this line
   # has_not_this :person, through: :professions_people, order: :title, by: :title, group_by: {play: :title}
