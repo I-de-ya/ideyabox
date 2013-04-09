@@ -136,7 +136,7 @@ module AdminHelper
     new_image = image.new
     undercored_image = image.to_s.underscore
     form_for [:admin, parent, new_image], :id => "upload_form" do |f|
-      f.file_field :image, multiple: true, name: "#{undercored_image}[image]"
+      file_field_tag :image, multiple: true, name: "#{undercored_image}[image]"
     end
   end
 
