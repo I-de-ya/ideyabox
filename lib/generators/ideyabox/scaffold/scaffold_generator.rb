@@ -150,7 +150,7 @@ module Ideyabox
       end
 
       def add_to_topbar_items
-        final_string = "\n    %li{:class => \"\#\{\'active\' if c == \'#{plural_resource_name}\'}\"\}= link_to \'#{plural_resource_name}\', admin_#{plural_resource_name}_path"
+        final_string = "\n    %li{:class => \"\#\{\'active\' if c == \'#{plural_resource_name}\'}\"\}= link_to plural_name(\'#{plural_resource_name}\'), admin_#{plural_resource_name}_path"
 
         inject_into_file "app/views/admin/shared/_topbar.html.haml", final_string, :after => "-when :section"
       end
@@ -165,6 +165,7 @@ module Ideyabox
         locales.each do |locale|
           inject_into_file "config/locales/#{locale}.yml", "      #{resource_name}: \"#{resource_name}\"\n", :after => "models:\n"
           inject_into_file "config/locales/#{locale}.yml", attributes_string, :after => "attributes:\n"
+          inject_into_file "config/locales/#{locale}.yml", "  #{plural_resource_name}:\n    accusative:\n    plural:\n", :after => "ru:\n"
         end
       end
 

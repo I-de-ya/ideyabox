@@ -38,13 +38,13 @@ Generate some model or scaffold for your project
 Add */admin* route in your *config/routes.rb* in :admin namespace
     
     namespace :admin do 
-      root :to => "your_controller#your_action"
+      root to: "your_controller#your_action"
     end
 
 like this
     
     namespace :admin do 
-      root :to => "guests#index"
+      root to: "guests#index"
     end
 
 ### Generating admin assets

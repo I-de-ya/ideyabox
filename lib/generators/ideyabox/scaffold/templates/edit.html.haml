@@ -2,9 +2,9 @@
   %p= link_to t('back'), admin_<%= controller_routing_path %>_path, :class => "bright_link"
   %h1
     - if @<%= resource_name %>.new_record?
-      = "#{t 'add'} #{<%= @model_name.demodulize %>.model_name.human}"
+      = action_accusative("<%= plural_resource_name %>", "add")
     - else
-      = "#{t 'edit'} #{<%= @model_name.demodulize %>.model_name.human}"
+      = action_accusative("<%= plural_resource_name %>", "edit")
 
 = form_for [:admin, @<%= resource_name %>] do |f|
   - if @<%= resource_name %>.errors.any?

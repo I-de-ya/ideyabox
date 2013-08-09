@@ -9,6 +9,7 @@ module Ideyabox
         directory "views/admin", "app/views/admin"
         directory "views/layouts", "app/views/layouts"
         directory "locales", "config/locales"
+        copy_file "helpers/translations_helper.rb", "app/helpers/translations_helper.rb"
         copy_file "assets/admin.scss.erb", "app/assets/stylesheets/admin.scss.erb"
         copy_file "assets/admin.js", "app/assets/javascripts/admin.js"
         copy_file "tasks/seeds.rb", "db/seeds.rb"
