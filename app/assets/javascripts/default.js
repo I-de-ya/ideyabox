@@ -16,12 +16,12 @@ $(document).ready(function(){
   $("ol.sortable ol").hide();
 
 
-  $('.zebra th a').live('click', function () {
+  $('body').on('click', '.zebra th a', function () {
     $.getScript(this.href);
     return false;
   });
 
-  $('.visibility a, .toggleshow').live('click', function(e){
+  $('body').on('click','.visibility a, .toggleshow', function(e){
     e.preventDefault();
     $(this).find('i').toggleClass('icon-eye-open').toggleClass('icon-eye-close not-work');
     
