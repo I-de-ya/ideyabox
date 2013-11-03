@@ -1,8 +1,8 @@
 - content_for(:page_header) do
-  %p= link_to "#{t 'add'}  #{<%= @model_name.demodulize %>.model_name.human}", new_admin_<%= singular_controller_routing_path %>_path, :class => "bright_link"
-  %h1= link_to '<%= plural_resource_name %>', admin_<%= plural_resource_name %>_path
+  %p= link_to action_accusative("<%= plural_resource_name %>", "add"), new_admin_<%= singular_controller_routing_path %>_path, :class => 'bright_link'
+  %h1= link_to plural_name("<%= plural_resource_name %>"), admin_<%= plural_resource_name %>_path
 -#= paginate @<%= plural_resource_name %>
-<%= if column_names.include?("position")
+<%= if column_names.include?('position')
   "= render 'sort_buttons' "
 end %>
 #index_wr
